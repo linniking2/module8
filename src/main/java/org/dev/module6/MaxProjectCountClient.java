@@ -1,5 +1,4 @@
 package org.dev.module6;
-
 public class MaxProjectCountClient {
     private String name;
     private int projectCount;
@@ -9,12 +8,11 @@ public class MaxProjectCountClient {
         this.projectCount = projectCount;
     }
 
-
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public int getProjectCount() {
+    public int getProjectCount(){
         return projectCount;
     }
 }
