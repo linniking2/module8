@@ -1,7 +1,8 @@
-package org.dev.module6;
+package org.dev.module7;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Database {
@@ -10,10 +11,7 @@ public class Database {
 
     private Database() {
         try {
-
             String url = "jdbc:h2:file:D:/go it/dev modules/module6/module6_alternative/module6";
-
-
             this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,9 +29,13 @@ public class Database {
         return connection;
     }
 
-    public void executeUpdate(String sql) {
-        try {
-            connection.createStatement().executeUpdate(sql);
+    public void executeUpdate(String sql, Object... parameters) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            for (int i = 0; i < parameters.length; i++) {
+                ps.setObject(i + 1, parameters[i]);
+            }
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

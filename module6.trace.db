@@ -17,9 +17,9 @@ org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The
 	at org.h2.Driver.connect(Driver.java:59)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:253)
-	at org.dev.module6.Database.<init>(Database.java:17)
-	at org.dev.module6.Database.getInstance(Database.java:25)
-	at org.dev.module6.DatabaseInitService.main(DatabaseInitService.java:11)
+	at org.dev.module7.Database.<init>(Database.java:17)
+	at org.dev.module7.Database.getInstance(Database.java:25)
+	at org.dev.module7.DatabaseInitService.main(DatabaseInitService.java:11)
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/go it/dev modules/module6/module6_alternative/module6.mv.db [2.3.232/7]" [50000-232]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)

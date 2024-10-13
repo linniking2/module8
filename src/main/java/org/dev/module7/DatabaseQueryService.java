@@ -1,13 +1,15 @@
-package org.dev.module6;
+package org.dev.module7;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-public class DatabaseQueryService {
 
+public class DatabaseQueryService {
 
     private String readFile(String filePath) {
         try {
@@ -21,8 +23,8 @@ public class DatabaseQueryService {
         String sql = readFile("sql/find_longest_project.sql");
         List<Project> projects = new ArrayList<>();
         try (Connection conn = Database.getInstance().getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -39,8 +41,8 @@ public class DatabaseQueryService {
         String sql = readFile("sql/find_max_projects_client.sql");
         List<MaxProjectCountClient> clients = new ArrayList<>();
         try (Connection conn = Database.getInstance().getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 String name = rs.getString("name");
@@ -57,8 +59,8 @@ public class DatabaseQueryService {
         String sql = readFile("sql/find_max_salary_worker.sql");
         List<Worker> workers = new ArrayList<>();
         try (Connection conn = Database.getInstance().getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 String name = rs.getString("name");
@@ -75,8 +77,8 @@ public class DatabaseQueryService {
         String sql = readFile("sql/find_youngest_eldest_workers.sql");
         List<WorkerAge> workers = new ArrayList<>();
         try (Connection conn = Database.getInstance().getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 String type = rs.getString("type");
@@ -94,8 +96,8 @@ public class DatabaseQueryService {
         String sql = readFile("sql/print_project_prices.sql");
         List<ProjectPrice> projectPrices = new ArrayList<>();
         try (Connection conn = Database.getInstance().getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -108,4 +110,3 @@ public class DatabaseQueryService {
         return projectPrices;
     }
 }
-

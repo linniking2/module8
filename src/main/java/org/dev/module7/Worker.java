@@ -1,4 +1,4 @@
-package org.dev.module6;
+package org.dev.module7;
 
 public class Worker {
     private String name;

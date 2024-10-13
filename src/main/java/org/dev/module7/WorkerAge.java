@@ -1,4 +1,4 @@
-package org.dev.module6;
+package org.dev.module7;
 
 import java.sql.Date;
 
