@@ -1,4 +1,4 @@
-package org.dev.module7;
+package org.dev.module8;
 public class MaxProjectCountClient {
     private String name;
     private int projectCount;

@@ -1,4 +1,4 @@
-package org.dev.module7;
+package org.dev.module8;
 
 public class Project {
     private int id;

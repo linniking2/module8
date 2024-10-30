@@ -1,8 +1,9 @@
-package org.dev.module7;
+package org.dev.module8;
+
+import org.flywaydb.core.Flyway;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Database {
@@ -11,8 +12,15 @@ public class Database {
 
     private Database() {
         try {
-            String url = "jdbc:h2:file:D:/go it/dev modules/module6/module6_alternative/module6";
+            String url = "jdbc:h2:file:D:/go it/dev modules/module8";
             this.connection = DriverManager.getConnection(url);
+
+            Flyway flyway = Flyway
+                    .configure()
+                    .dataSource(url, null, null)
+                    .load();
+
+            flyway.migrate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,15 +37,4 @@ public class Database {
         return connection;
     }
 
-    public void executeUpdate(String sql, Object... parameters) {
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            for (int i = 0; i < parameters.length; i++) {
-                ps.setObject(i + 1, parameters[i]);
-            }
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
